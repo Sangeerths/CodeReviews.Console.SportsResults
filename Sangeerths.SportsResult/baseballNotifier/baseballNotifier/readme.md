@@ -174,14 +174,6 @@ This keeps the scheduling logic simple and easy to understand.
 
 Email credentials are loaded from environment variables rather than being hardcoded.
 
-```text
-.env
- │
- ├── EMAIL_FROM_ADDRESS
- ├── EMAIL_APP_PASSWORD
- └── EMAIL_TO_ADDRESS
-```
-
 This separates application configuration from application code and prevents credentials from being directly embedded in the source.
 
 ### Error Handling
@@ -189,12 +181,6 @@ This separates application configuration from application code and prevents cred
 The scraping and email workflow is wrapped in exception handling so that a temporary failure does not immediately terminate the background worker.
 
 Errors are recorded through the built-in logging system, making it easier to diagnose problems while the worker continues running.
-
-### Console Presentation
-
-**Spectre.Console** is used to present the scraped information in a readable table and provide visual feedback about the application's current state.
-
-This makes the console application easier to monitor while it is running.
 
 ## How to Run
 
@@ -234,18 +220,3 @@ dotnet run
 
 The application will immediately retrieve the sports data, display it in the console, send the email report, and then wait for the next scheduled execution.
 
-## Future Improvements
-
-Some possible improvements include:
-
-* Move scraping logic into a dedicated service
-* Move email functionality into a dedicated service
-* Add unit tests for the HTML parsing logic
-* Make the scraping URL configurable
-* Make the execution interval configurable
-* Add retry logic for network failures
-* Support multiple sports data sources
-* Add structured configuration using `IOptions`
-* Add more detailed logging
-* Store historical results
-* Add support for additional email providers
